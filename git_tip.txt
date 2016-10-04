@@ -1,0 +1,8 @@
+git branch "new_branch_name" ---> create a temporary branch
+git checkout "new_branch_name" ----> move to the new branch.
+..... do stuff
+git checkout master -----> move back to master brach
+git merge "new_brach_name"  ----> merge changes in "new branch"
+git brance -d "new_branch_name" --> remove new_branch
+
+
