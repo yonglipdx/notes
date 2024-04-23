@@ -86,14 +86,22 @@ From the .vsvimrc bindings
 
 ```cpp
 /*
-You use dynamic_cast to cast a pointer/RERENCE from a base class to a derived class if you have polymorphic classes (virutal desctructior is needed) and want to perform a safe downcast.
+You use dynamic_cast to cast a pointer/RERENCE from a base class to a derived class if you have polymorphic classes
+(virutal desctructior is needed) and want to perform a safe downcast.
 
 For casting from a subclass to its superclass, you can use a regular cast (static_cast) because it's always a valid conversion.
 
-static_cast is a more general casting. pointer, refernce, object, built-in. It's the programmer's responsibility to make that the casting is valid. So you can blindly replace all dynamic_cast with static_cast in the codebase without introduing build issure during compile time. But it is preferred to use dynmaic_cast + success/failure(null) check + optional try/catch block to dispatch logic.
+static_cast is a more general casting. pointer, refernce, object, built-in. It's the programmer's responsibility
+ to make that the casting is valid. So you can blindly replace all dynamic_cast with static_cast in the codebase
+ without introduing build issure during compile time.
+But it is preferred to use dynmaic_cast + success/failure(null) check + optional try/catch block to dispatch logic.
 
 
-In this example, Base is a polymorphic class with a virtual function, and Derived is derived from Base. We create a Derived object and assign its address to a Base*. Later, we use dynamic_cast to safely downcast the Base* to a Derived*. If the object is indeed of the derived type, the dynamic_cast will succeed, and we can safely call functions specific to the derived class using the resulting pointer (derivedPtr). If the cast fails (for example, if the object is not of the derived type), dynamic_cast returns a null pointer.
+In this example, Base is a polymorphic class with a virtual function, and Derived is derived from Base.
+We create a Derived object and assign its address to a Base*. Later, we use dynamic_cast to safely downcast the Base* to a Derived*.
+If the object is indeed of the derived type, the dynamic_cast will succeed, and we can safely call functions specific
+ to the derived class using the resulting pointer (derivedPtr).
+If the cast fails (for example, if the object is not of the derived type), dynamic_cast returns a null pointer.
 
 Be aware that if static_cast is operating on object by value, a NEW object would be created as usual with the possibility of slicing.
 
