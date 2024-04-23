@@ -11,14 +11,14 @@ vim block  insert   (exc twice)
 4. exc TIWCE 
 
 save,append and copy linee in vim(with buffer a) 
-1. \"a3+y    --> yank 3 lines in a
-2. \"A8+y    --> append(A) 5 lines into a
-3. \"ap      --> paste above 11 lines 
+1. \"a3+y  --> yank 3 lines in a
+2. \"A8+y  --> append(A) 5 lines into a
+3. \"ap    --> paste above 11 lines 
 
 save, copy, (not append) lines to clipbord
 clipboard register for linux is "\*" for window is "+"
-1. copy: hightlight and   \"\*y"              (linux),  \"\+y\"   (window)
-2  paste                  mouse-middle-click(linux),  ctrl\-v (window) 
+1. copy: hightlight and   \"\*y"        (linux),  \"\+y\"   (window)
+2  paste          mouse-middle-click(linux),  ctrl\-v (window) 
 
 rcording macro:   q  qq  @
 1. q + register(a-z)
@@ -27,11 +27,11 @@ rcording macro:   q  qq  @
 use macro
  @ register(a-z)
 
-Change: cw/ciw   cf/ct    cnf/cnt    ci + '({""  r/#r/R/s/#s/a/A o/O x/dd 
+Change: cw/ciw   cf/ct  cnf/cnt  ci + '({""  r/#r/R/s/#s/a/A o/O x/dd 
 yanking: y w|iw|$|^|%{([ paste: P|p
-move:    H/M/L/ZZ w/e/b 
+move:  H/M/L/ZZ w/e/b 
 search:  / ? + n/N
-copy:    #start,#end2#destination
+copy:  #start,#end2#destination
 
 cw - changes the word from the cursor to the end of the word 
 ciw - changes the entire worth that the cursor is on  (i--> entire)
@@ -114,46 +114,46 @@ a NEW object would be created as usual with the possibility of slicing.
 
 class Base {
 public:
-    virtual void baseFunction() {
-        std::cout << "Base class function" << std::endl;
-    }
+  virtual void baseFunction() {
+    std::cout << "Base class function" << std::endl;
+  }
 
-    virtual ~Base() {} // A virtual destructor is necessary for polymorphic classes
+  virtual ~Base() {} // A virtual destructor is necessary for polymorphic classes
 };
 
 class Derived : public Base {
 public:
-    void derivedFunction() {
-        std::cout << "Derived class function" << std::endl;
-    }
+  void derivedFunction() {
+    std::cout << "Derived class function" << std::endl;
+  }
 };
 
 int main() {
-    Base* basePtr = new Derived();  // Create a Derived object and assign its address to a Base pointer
+  Base* basePtr = new Derived();  // Create a Derived object and assign its address to a Base pointer
 
-    // Use dynamic_cast to safely downcast to a Derived pointer
-    Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);
+  // Use dynamic_cast to safely downcast to a Derived pointer
+  Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);
 
-    // pointer downcasting
-    if (derivedPtr) {
-        // The dynamic_cast succeeded, use derivedPtr to call Derived class functions
-        derivedPtr->derivedFunction();
-    } else {
-        // The dynamic_cast failed, likely because the object isn't of the expected type
-        std::cout << "Dynamic cast failed" << std::endl;
-    }
+  // pointer downcasting
+  if (derivedPtr) {
+    // The dynamic_cast succeeded, use derivedPtr to call Derived class functions
+    derivedPtr->derivedFunction();
+  } else {
+    // The dynamic_cast failed, likely because the object isn't of the expected type
+    std::cout << "Dynamic cast failed" << std::endl;
+  }
 
-    delete basePtr;
-    return 0;
+  delete basePtr;
+  return 0;
 }
 
 // for reference downcasting
 Base& baseRef = someDerivedObject;
 try {
-    Derived& derivedRef = dynamic_cast<Derived&>(baseRef);
-    // ...
+  Derived& derivedRef = dynamic_cast<Derived&>(baseRef);
+  // ...
 } catch (std::bad_cast& e) {
-    // Handle the case where the cast fails
+  // Handle the case where the cast fails
 }
  
 
@@ -184,7 +184,7 @@ struct Creature
 
 public:
   Creature(Game &game, int base_attack, int base_defense) : game(game), base_attack(base_attack),
-                                                            base_defense(base_defense) {}
+                              base_defense(base_defense) {}
   virtual int get_attack() = 0;
   virtual int get_defense() = 0;
 };
@@ -194,30 +194,30 @@ struct Game
 {
   vector<Creature*> creatures;
   void attach(Creature* cr){ 
-      creatures.push_back(cr);
+    creatures.push_back(cr);
   }  
   
   void process(StatQuery& sq, Creature* cr)
   { 
-      switch(sq.statistic)
-      {
-          case sq.Statistic::attack:
-            sq.result = cr->base_attack;
-            for (auto c: creatures){
-                if (c == cr) continue; 
-                if (c->base_attack == 3){
-                    sq.result +=1;
-                } 
-            }
-            break;
-          case sq.Statistic::defense:
-            sq.result = cr->base_defense;
-            for (auto c: creatures){
-                if (c == cr) continue;
-                sq.result+=1;
-            }
-            break;
-      }; 
+    switch(sq.statistic)
+    {
+      case sq.Statistic::attack:
+      sq.result = cr->base_attack;
+      for (auto c: creatures){
+        if (c == cr) continue; 
+        if (c->base_attack == 3){
+          sq.result +=1;
+        } 
+      }
+      break;
+      case sq.Statistic::defense:
+      sq.result = cr->base_defense;
+      for (auto c: creatures){
+        if (c == cr) continue;
+        sq.result+=1;
+      }
+      break;
+    }; 
   }
 };
 
@@ -231,15 +231,15 @@ public:
   Goblin(Game &game) : Creature(game, 1, 1) {game.attach(this);} 
 
   int get_attack() override {
-    StatQuery task(StatQuery::attack, 0);
-    game.process(task, this);
-    return task.result;
+  StatQuery task(StatQuery::attack, 0);
+  game.process(task, this);
+  return task.result;
   }
 
   int get_defense() override {
-    StatQuery task(StatQuery::defense, 0);
-    game.process(task, this);
-    return task.result;
+  StatQuery task(StatQuery::defense, 0);
+  game.process(task, this);
+  return task.result;
   }
 };
 
@@ -283,63 +283,63 @@ using namespace std;
  
 struct IRat
 {
-    virtual void update(size_t count) = 0;
+  virtual void update(size_t count) = 0;
 };
 
 
 struct Game
 {
 
-    vector<IRat*> users{};
-    void attach(IRat* rat)
-    {
-        users.push_back(rat);
-        notify();
-    }
+  vector<IRat*> users{};
+  void attach(IRat* rat)
+  {
+    users.push_back(rat);
+    notify();
+  }
 
-    void deattach(IRat* rat)
+  void deattach(IRat* rat)
+  {
+    users.erase(std::remove(users.begin(), users.end(), rat));
+    notify();
+  }
+  
+  void notify()
+  {
+    for (auto r : users)
     {
-        users.erase(std::remove(users.begin(), users.end(), rat));
-        notify();
+      r->update(users.size());
     }
-    
-    void notify()
-    {
-        for (auto r : users)
-        {
-          r->update(users.size());
-        }
-    }
-    
+  }
+  
 };
 
 struct Rat : public IRat{
 
-    Game& game;
-    int attack{1};
+  Game& game;
+  int attack{1};
 
-    // work
-    Rat(Game& g):game(g)
-    {
-      game.attach(this);
-    }
+  // work
+  Rat(Game& g):game(g)
+  {
+    game.attach(this);
+  }
 
-//   doesn't work:     
-//    Rat(Game& g)
-//    {
-//      game = g;
-//      game.attach(this);
-//    }
+//   doesn't work:   
+//  Rat(Game& g)
+//  {
+//    game = g;
+//    game.attach(this);
+//  }
 //   
-    
-    void update(size_t count) override {
-        attack = (int)count;
-    } 
+  
+  void update(size_t count) override {
+    attack = (int)count;
+  } 
 
-    ~Rat() 
-    { 
-       game.deattach(this);
-    }
+  ~Rat() 
+  { 
+     game.deattach(this);
+  }
 
 };
 
@@ -370,33 +370,33 @@ int main(){
 using namespace std;
 
 struct IParticipant {
-    int value  {0};
+  int value  {0};
 };
 
 struct Mediator
 {
-    vector<IParticipant*> participants;
+  vector<IParticipant*> participants;
 };
 
 
 struct Participant : IParticipant
 {
-    // int value{0};
-    Mediator& mediator;
+  // int value{0};
+  Mediator& mediator;
 
-    Participant(Mediator &mediator) : mediator(mediator)
-    {
-      mediator.participants.push_back(this);
-    }
+  Participant(Mediator &mediator) : mediator(mediator)
+  {
+    mediator.participants.push_back(this);
+  }
 
-    void say(int value)
-    {
-        cout << this << " say " << value << endl;
-        for (auto& p : mediator.participants){
-            if ( dynamic_cast<IParticipant*>(this) == p) continue;
-            p->value += value;
-        }
+  void say(int value)
+  {
+    cout << this << " say " << value << endl;
+    for (auto& p : mediator.participants){
+      if ( dynamic_cast<IParticipant*>(this) == p) continue;
+      p->value += value;
     }
+  }
 };
 
 ```
@@ -466,28 +466,28 @@ struct SaferObservable
 public:
   void notify(T& source, const std::string& field_name)
   {
-    std::scoped_lock<mutex_t> lock{mtx};
-    for (auto observer : observers)
-      if (observer)
-        observer->field_changed(source, field_name);
+  std::scoped_lock<mutex_t> lock{mtx};
+  for (auto observer : observers)
+    if (observer)
+    observer->field_changed(source, field_name);
   }
 
   void subscribe(Observer<T>& observer)
   {
-    std::scoped_lock<mutex_t> lock{mtx};
-    observers.push_back(&observer);
+  std::scoped_lock<mutex_t> lock{mtx};
+  observers.push_back(&observer);
   }
 
   void unsubscribe(Observer<T>& observer)
   {
-    auto it = std::find(begin(observers), end(observers), &observer);
-    if (it != end(observers))
-      *it = nullptr;
-//    std::scoped_lock<mutex_t> lock{mtx};
-//    observers.erase(
-//      remove(observers.begin(), observers.end(), &observer),
-//      observers.end()
-//    );
+  auto it = std::find(begin(observers), end(observers), &observer);
+  if (it != end(observers))
+    *it = nullptr;
+//  std::scoped_lock<mutex_t> lock{mtx};
+//  observers.erase(
+//    remove(observers.begin(), observers.end(), &observer),
+//    observers.end()
+//  );
   }
 };
 
@@ -500,8 +500,8 @@ template <typename T>
 struct Observer
 {
   virtual void field_changed(
-    T& source,
-    const std::string& field_name
+  T& source,
+  const std::string& field_name
   ) = 0;
 };
 
@@ -520,23 +520,23 @@ public:
 
   int get_age() const
   {
-    return age;
+  return age;
   }
 
   void set_age(int age)
   {
-    if (this->age == age) return;
+  if (this->age == age) return;
 
-    auto old_can_vote = get_can_vote();
-    this->age = age;
-    notify(*this, "age");
+  auto old_can_vote = get_can_vote();
+  this->age = age;
+  notify(*this, "age");
 
-    if (old_can_vote != get_can_vote())
-      notify(*this, "can_vote");
+  if (old_can_vote != get_can_vote())
+    notify(*this, "can_vote");
   }
 
   bool get_can_vote() const {
-    return age >= 16;
+  return age >= 16;
   }
 };
 
@@ -548,11 +548,11 @@ struct ConsolePersonObserver
 private:
   void field_changed(Person &source, const std::string &field_name) override
   {
-    cout << "Person's " << field_name << " has changed to ";
-    if (field_name == "age") cout << source.get_age();
-    if (field_name == "can_vote")
-      cout << boolalpha << source.get_can_vote();
-    cout << ".\n";
+  cout << "Person's " << field_name << " has changed to ";
+  if (field_name == "age") cout << source.get_age();
+  if (field_name == "can_vote")
+    cout << boolalpha << source.get_can_vote();
+  cout << ".\n";
   }
 };
 
@@ -560,16 +560,16 @@ struct TrafficAdministration : Observer<Person>
 {
   void field_changed(Person &source, const std::string &field_name) override
   {
-    if (field_name == "age")
+  if (field_name == "age")
+  {
+    if (source.get_age() < 17)
+    cout << "Whoa there, you're not old enough to drive!\n";
+    else
     {
-      if (source.get_age() < 17)
-        cout << "Whoa there, you're not old enough to drive!\n";
-      else
-      {
-        cout << "Oh, ok, we no longer care!\n";
-        source.unsubscribe(*this);
-      }
+    cout << "Oh, ok, we no longer care!\n";
+    source.unsubscribe(*this);
     }
+  }
   }
 };
 
@@ -586,11 +586,11 @@ int main(int ac, char* av[])
   p2.set_age(17);
   try
   {
-    p.set_age(17);
+  p.set_age(17);
   }
   catch (const std::exception& e)
   {
-    cout << "Oops, " << e.what() << "\n";
+  cout << "Oops, " << e.what() << "\n";
   }
 
   return 0;
@@ -604,41 +604,41 @@ int main(int ac, char* av[])
 ```cpp
 
 // Two declaration --> essentially the same as const is ignored in declaration. But compile OK 
-void F(int);                     // 1: declaration of F(int)
-void F(const int);               // 2: re-declaration of F(int)
+void F(int);           // 1: declaration of F(int)
+void F(const int);         // 2: re-declaration of F(int)
 
 // Two defination is NOT allowed below
-void F(int) { /* ... */ }        // 3: definition of F(int)
+void F(int) { /* ... */ }    // 3: definition of F(int)
 void F(const int) { /* ... */ }  // 4: error: re-definition of F(int)
 
 
 //GOOD: Non-top level const
-void F(const int* x);                  // 1
-void F(const int& x);                  // 2
+void F(const int* x);          // 1
+void F(const int& x);          // 2
 void F(std::unique_ptr<const int> x);  // 3
-void F(int* x);                        // 4
+void F(int* x);            // 4
 
 
 //Top-level const  ---> should avoid
-void F(int x) {};            // 1: declares F(int)
-//void F(const int x) {};            // 1: declares F(int)
+void F(int x) {};      // 1: declares F(int)
+//void F(const int x) {};      // 1: declares F(int)
 
-void F(int* x) {};         // 2: declares F(int*)
-//void F(int* const x) {};         // 2: declares F(int*)
+void F(int* x) {};     // 2: declares F(int*)
+//void F(int* const x) {};     // 2: declares F(int*)
 
 void F(const int* x);   // 3: declares F(const int*)
 // void F(const int* const x);   // 3: declares F(const int*)
 
 
 
-void F(const int* x) {};                  // 1
-void F(const int& x) {};                  // 2
+void F(const int* x) {};          // 1
+void F(const int& x) {};          // 2
 void F(std::unique_ptr<const int> x) {};  // 3
 void F(int* x){};  // 4
 
 
-void F(const int x);          // 1: declares F(int)
-void F(int* const x);         // 2: declares F(int*)
+void F(const int x);      // 1: declares F(int)
+void F(int* const x);     // 2: declares F(int*)
 void F(const int* const x);   // 3: declares F(const int*)
 ```
 
@@ -669,8 +669,8 @@ void F(const int* const x);   // 3: declares F(const int*)
 
 > function are default to external linkage. can use *static* to set it as internal linkage
 > to use global function from another file, make forward declaration in **another** file
-> use extern for const glabal                                 --> add **extern** in ori file and forward declaration with *extern* in another file
-> non-const and constexpr global val are external by default  --> extern optional            and forward declaration with *extern* in another file
+> use extern for const glabal                 --> add **extern** in ori file and forward declaration with *extern* in another file
+> non-const and constexpr global val are external by default  --> extern optional      and forward declaration with *extern* in another file
 
 ```cpp
  //creater.cpp
@@ -687,9 +687,9 @@ extern const int g_y; // this extern is a forward declaration of a const variabl
 
 int main()
 {
-    std::cout << g_x << '\n'; // prints 2
+  std::cout << g_x << '\n'; // prints 2
 
-    return 0;
+  return 0;
 ```
 
 > gloabl varibale and function identifier can have either internal linkage or external linkage
@@ -846,18 +846,18 @@ What is the advantage of a reference over a pointer
 How does a reference to a reference work
 In the given program, convert all the const pointer statements to references
 Explain the below statements:
-    int *const p;
-    const int *p;
-    const int * const p;
-    int const *p;
+  int *const p;
+  const int *p;
+  const int * const p;
+  int const *p;
 What is the difference between the operators (&) and (&*) when used in the context of pointers
 In C++, is it mandatory to name a structure or a union
 Is the life time of a locally declared reference limited to the function in which it is declared
 Declare the following:
-    an array of 5 integers
-    an array of 5 pointers
-    a pointer to an array of 5 integers
-    a reference to an array of 5 integers
+  an array of 5 integers
+  an array of 5 pointers
+  a pointer to an array of 5 integers
+  a reference to an array of 5 integers
 Is it possible to create an array of references
 Can we have multiple definitions of a function in a single module
 What is the difference between declaration and definition of a variable
@@ -1080,11 +1080,11 @@ void access_A(){
 
 int main() {
 	A* a = new A();  // A a2;  ALL OK
-	a->say();        // a2.say(); 
+	a->say();    // a2.say(); 
 	B* b = new B();  // B b2;
-	b-> say();       // b2.say();
+	b-> say();     // b2.say();
 	A* c = new B();  //A& c2 = b2;
-	c->say();       // c2.say();
+	c->say();     // c2.say();
   access_A();   // friend needed
 	return 0;
 }
@@ -1094,69 +1094,69 @@ int main() {
 [flowers and persons testing2]( https://leetcode.com/problems/number-of-flowers-in-full-bloom/description/ )
 ```cpp
   vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& persons) {
-        vector<int> ret(persons.size());
-        map<int,vector<int>> day_person;
-        for (int i=0; i<persons.size(); i++) day_person[persons[i]].push_back(i);
-        priority_queue<int, vector<int>,greater<int>> PQ;
-        sort(flowers.begin(),flowers.end());
-        int f_idx = 0;
-        for (auto& d : day_person)
-        {
-            auto& cur_d = d.first;
-            auto& ps = d.second;
-            while (f_idx < flowers.size() && flowers[f_idx][0] <= cur_d)
-            {
-                while (PQ.size() && PQ.top() < cur_d) PQ.pop();
-                PQ.push(flowers[f_idx++][1]);
-            }
-            while (PQ.size() && PQ.top() < cur_d) PQ.pop();
-            for (auto p: ps) ret[p] = PQ.size();
-        }
-        return ret;
-    } 
+    vector<int> ret(persons.size());
+    map<int,vector<int>> day_person;
+    for (int i=0; i<persons.size(); i++) day_person[persons[i]].push_back(i);
+    priority_queue<int, vector<int>,greater<int>> PQ;
+    sort(flowers.begin(),flowers.end());
+    int f_idx = 0;
+    for (auto& d : day_person)
+    {
+      auto& cur_d = d.first;
+      auto& ps = d.second;
+      while (f_idx < flowers.size() && flowers[f_idx][0] <= cur_d)
+      {
+        while (PQ.size() && PQ.top() < cur_d) PQ.pop();
+        PQ.push(flowers[f_idx++][1]);
+      }
+      while (PQ.size() && PQ.top() < cur_d) PQ.pop();
+      for (auto p: ps) ret[p] = PQ.size();
+    }
+    return ret;
+  } 
 
 ```
 
 ```python
 
  def fullBloomFlowers(self, flowers: List[List[int]], persons: List[int]) -> List[int]:
-        flowers.sort()
-        fIdx, pq, ret = 0 , [], [0]*len(persons)
-        for pIdx, dIdx in sorted(enumerate(persons), key=lambda a: a[1]):
-            while fIdx < len(flowers) and flowers[fIdx][0] <= dIdx:
-                heapq.heappush(pq, flowers[fIdx][1])
-                fIdx+=1
-            while pq and pq[0] < dIdx: heapq.heappop(pq)
-            ret[pIdx] = len(pq)
-        return ret
+    flowers.sort()
+    fIdx, pq, ret = 0 , [], [0]*len(persons)
+    for pIdx, dIdx in sorted(enumerate(persons), key=lambda a: a[1]):
+      while fIdx < len(flowers) and flowers[fIdx][0] <= dIdx:
+        heapq.heappush(pq, flowers[fIdx][1])
+        fIdx+=1
+      while pq and pq[0] < dIdx: heapq.heappop(pq)
+      ret[pIdx] = len(pq)
+    return ret
  
 ```
 
 ```cpp
   vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& persons) {
-        vector<int> ret;
-        vector<int> start, end;
-        for (auto& f : flowers){
-            start.push_back(f[0]);
-            end.push_back(f[1]);
-        }
-        sort(start.begin(),start.end());
-        sort(end.begin(),end.end());
+    vector<int> ret;
+    vector<int> start, end;
+    for (auto& f : flowers){
+      start.push_back(f[0]);
+      end.push_back(f[1]);
+    }
+    sort(start.begin(),start.end());
+    sort(end.begin(),end.end());
 
-        for (auto p: persons){
-            auto idx2 = upper_bound(start.begin(), start.end(), p)-start.begin();
-            auto idx1 = lower_bound(end.begin(), end.end(), p)-end.begin();
-            ret.push_back(idx2-idx1);
-        }
-        
-        return ret;
+    for (auto p: persons){
+      auto idx2 = upper_bound(start.begin(), start.end(), p)-start.begin();
+      auto idx1 = lower_bound(end.begin(), end.end(), p)-end.begin();
+      ret.push_back(idx2-idx1);
+    }
+    
+    return ret;
 
 
 ```
 ```python
  def fullBloomFlowers(self, flowers: List[List[int]], persons: List[int]) -> List[int]:
-        start,end = [sorted([a for a,b in flowers]), sorted([b for a,b in flowers])]
-        return [bisect_right(start, p) - bisect_left(end,p) for p in persons]
+    start,end = [sorted([a for a,b in flowers]), sorted([b for a,b in flowers])]
+    return [bisect_right(start, p) - bisect_left(end,p) for p in persons]
 
 ```
 
@@ -1194,27 +1194,27 @@ bool g_ready = false;
 
 void producer(){
   while (true){
-    unique_lock<std::mutex> ul(g_mtx);
-    g_ready = true;
-    ul.unlock();
-    g_cv.notify_one();
-    un.lock();
-    g_cv.wait(ul, [](){return g_ready == false;})
+  unique_lock<std::mutex> ul(g_mtx);
+  g_ready = true;
+  ul.unlock();
+  g_cv.notify_one();
+  un.lock();
+  g_cv.wait(ul, [](){return g_ready == false;})
   }
 }
 
 void producer(){
   while(true){
-    unique_lock<std::mutex> ul(g_mtx);
-    g_ready = true;
-    // if wait() failed.  ul.unlock() will be called.
-    // if wait() successed. un.lock() will be called.
-    g_cv.wait(ul, [](){return g_ready;}
-    // consume data.
-    g_ready = false;
-    g_cv.notify_one();
-    ul.lock();
-    g_cv.wait(ul, [](){return !g_ready;})
+  unique_lock<std::mutex> ul(g_mtx);
+  g_ready = true;
+  // if wait() failed.  ul.unlock() will be called.
+  // if wait() successed. un.lock() will be called.
+  g_cv.wait(ul, [](){return g_ready;}
+  // consume data.
+  g_ready = false;
+  g_cv.notify_one();
+  ul.lock();
+  g_cv.wait(ul, [](){return !g_ready;})
   }
 
 lock provides: atomic +   sequence synchronization. 
@@ -1318,14 +1318,14 @@ int cpp_functional(int a, int b, function<int(int,int)> func){
 class OP{
 public:
   int minus (int a, int b){
-    return a-b;
+  return a-b;
   }
 };
 
 int main() {
 
    int a = 111, b = 222;
-   cout << c_fun_pointer(a,b,add) << endl;    // c function pointer;
+   cout << c_fun_pointer(a,b,add) << endl;  // c function pointer;
    cpp_functor my_functor;
    cout << my_functor(a,b) << endl;  // cpp functor with instance name;
    cout << cpp_functor()(a,b) << endl; // cpp functor without instance name;
@@ -1412,32 +1412,32 @@ int * const p_int = &x;
 
 ```cpp
 vector<int> searchRange(vector<int>& nums, int target) {
-      int left = 0, right = nums.size();
-      int first = -1, second = -1;
-      while (left < right){
-        int mid = left + (right-left)/2;
-        if (target == nums[mid]){
-          first = mid;
-          right = mid;
-        }else if (nums[mid] > target) right = mid; // YL: not mid-1-> left < right && right is exclusive
-        else left = mid+1;
-      }   
-      
-      if (first == -1) return {-1,-1};
-      cout << first << endl;
-      second = first;
-      left = first, right = nums.size();
-      while (left < right){
-        int mid = left + (right-left)/2;
-        cout << mid << endl;
-        if (target == nums[mid])
-        {
-          second = mid;
-          left = mid+1;
-         }else if (nums[mid] > target) right = mid;  // YL: not mid-1-> left < right && right is exclusive
-         else left = mid+1;
-       }
-       return {first, second};
+    int left = 0, right = nums.size();
+    int first = -1, second = -1;
+    while (left < right){
+    int mid = left + (right-left)/2;
+    if (target == nums[mid]){
+      first = mid;
+      right = mid;
+    }else if (nums[mid] > target) right = mid; // YL: not mid-1-> left < right && right is exclusive
+    else left = mid+1;
+    }   
+    
+    if (first == -1) return {-1,-1};
+    cout << first << endl;
+    second = first;
+    left = first, right = nums.size();
+    while (left < right){
+    int mid = left + (right-left)/2;
+    cout << mid << endl;
+    if (target == nums[mid])
+    {
+      second = mid;
+      left = mid+1;
+     }else if (nums[mid] > target) right = mid;  // YL: not mid-1-> left < right && right is exclusive
+     else left = mid+1;
+     }
+     return {first, second};
 ```
 
 
@@ -1459,43 +1459,43 @@ If there are many valid answers, return any of them. If it is impossible to fini
 */
 
  vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-      unordered_map<int, unordered_set<int>> asendant, desendant;
-      for (auto& p: prerequisites){
-        asendant[p[0]].insert(p[1]);
-        desendant[p[1]].insert(p[0]);
-      }
-      
-      vector<int> ret;
-      for (int i=0; i<numCourses; i++){
-        if (asendant.count(i) == 0){
-          ret.push_back(i);
-          if (desendant.count(i)){
-            for (auto d: desendant[i])
-              asendant[d].erase(i);
-          }
-        }
-      }
-      
-      int valid = 1;
-      while (valid){
-        valid = 0;
-        for (int i=0; i< numCourses; i++){   // YL. for (auto& a: asendatant)   fails;
-          if (asendant.count(i) && asendant[i].size() == 0){
-            valid = true;
-            ret.push_back(i);
-            if (desendant.count(i)){
-              for (auto d: desendant[i]){
-                cout << "desendant: " << d << endl;
-                asendant[d].erase(i);
-              }
-            }  
-            asendant.erase(i);
-          }
-        }
-      }
-      if (ret.size() != numCourses) return {};
-      return ret;
+    unordered_map<int, unordered_set<int>> asendant, desendant;
+    for (auto& p: prerequisites){
+    asendant[p[0]].insert(p[1]);
+    desendant[p[1]].insert(p[0]);
     }
+    
+    vector<int> ret;
+    for (int i=0; i<numCourses; i++){
+    if (asendant.count(i) == 0){
+      ret.push_back(i);
+      if (desendant.count(i)){
+      for (auto d: desendant[i])
+        asendant[d].erase(i);
+      }
+    }
+    }
+    
+    int valid = 1;
+    while (valid){
+    valid = 0;
+    for (int i=0; i< numCourses; i++){   // YL. for (auto& a: asendatant)   fails;
+      if (asendant.count(i) && asendant[i].size() == 0){
+      valid = true;
+      ret.push_back(i);
+      if (desendant.count(i)){
+        for (auto d: desendant[i]){
+        cout << "desendant: " << d << endl;
+        asendant[d].erase(i);
+        }
+      }  
+      asendant.erase(i);
+      }
+    }
+    }
+    if (ret.size() != numCourses) return {};
+    return ret;
+  }
 
 
 ```
@@ -1520,28 +1520,28 @@ If there is such window, you are guaranteed that there will always be only one u
 */
 
  string minWindow(string s, string t) {
-      unordered_map<char, int> M;
-      for (auto c: t) M[c]--;
-      auto count = M.size();
-      int tail = 0, head = 0;
-      string res = "";
-      while (head < s.size()){
-        auto c = s[head];
-        if (!M.count(c)) {head++; continue;}
-        if (++M[c] == 0) count--;
-        if (count == 0){
-          while (!M.count(s[tail]) || M[s[tail]] > 0){   //YL: M[s[tail]] > 0 not M[s[tail]] > 1
-            if (M.count(s[tail])) M[s[tail]]--;
-            tail++;
-          }
-          if (res.size() == 0 || res.size() > head-tail+1){
-            res = s.substr(tail, head-tail+1); 
-          }
-        }
-        head++;
+    unordered_map<char, int> M;
+    for (auto c: t) M[c]--;
+    auto count = M.size();
+    int tail = 0, head = 0;
+    string res = "";
+    while (head < s.size()){
+    auto c = s[head];
+    if (!M.count(c)) {head++; continue;}
+    if (++M[c] == 0) count--;
+    if (count == 0){
+      while (!M.count(s[tail]) || M[s[tail]] > 0){   //YL: M[s[tail]] > 0 not M[s[tail]] > 1
+      if (M.count(s[tail])) M[s[tail]]--;
+      tail++;
       }
-      return res;
+      if (res.size() == 0 || res.size() > head-tail+1){
+      res = s.substr(tail, head-tail+1); 
+      }
     }
+    head++;
+    }
+    return res;
+  }
 :camel: :camel: :camel:  
 
 ### Increasing Triplet Subsequence
@@ -1552,12 +1552,12 @@ bool increasingTriplet(vector<int>& nums) {
    int len = nums.size();
    vector<int> dp(len, 1);
    for (int i=1; i<len; i++){
-      for (int j=0; j<i; j++){
-         if (nums[i] > nums[j]){
-            dp[i] = max(dp[i], dp[j]+1);
-            if (dp[i] > 2) return true;
-         }
-      }
+    for (int j=0; j<i; j++){
+     if (nums[i] > nums[j]){
+      dp[i] = max(dp[i], dp[j]+1);
+      if (dp[i] > 2) return true;
+     }
+    }
    }
    return false;
 }
@@ -1566,13 +1566,13 @@ bool increasingTriplet(vector<int>& nums) {
 bool increasingTriplet(vector<int>& nums) {
    vector<int> tmp;
    for (auto& n : nums){
-      auto it = lower_bound(tmp.begin(), tmp.end(), n);
-      if (it == tmp.end()){
-         tmp.push_back(n);
-         if (tmp.size() == 3) return true;
-      }else{
-         if (n<*it) *it = n;
-      }
+    auto it = lower_bound(tmp.begin(), tmp.end(), n);
+    if (it == tmp.end()){
+     tmp.push_back(n);
+     if (tmp.size() == 3) return true;
+    }else{
+     if (n<*it) *it = n;
+    }
    }
    return false;
 }
@@ -1588,23 +1588,23 @@ bool increasingTriplet(vector<int>& nums) {
    only valid for ALL positive array.
 */
 int minSubArrayLen(int s, vector<int>& nums) {
-      int len = nums.size();
-      if (len < 1 ) return 0;
-      int left = 0, right = 0;
-      int sum = 0, ret = INT_MAX;
-      while (right < len){
-        sum += nums[right];
-        if (sum >=s){
-          ret = min(ret, right-left+1);
-          while (sum>=s){
-            sum-=nums[left++];
-            if (sum >=s) ret = min(ret, right-left+1);
-          }
-        }
-        right++;
+    int len = nums.size();
+    if (len < 1 ) return 0;
+    int left = 0, right = 0;
+    int sum = 0, ret = INT_MAX;
+    while (right < len){
+    sum += nums[right];
+    if (sum >=s){
+      ret = min(ret, right-left+1);
+      while (sum>=s){
+      sum-=nums[left++];
+      if (sum >=s) ret = min(ret, right-left+1);
       }
-      return ret == INT_MAX ? 0 : ret;
     }
+    right++;
+    }
+    return ret == INT_MAX ? 0 : ret;
+  }
 ```
 
 **862 Minimum size subarray sum(allow negative)**
@@ -1623,18 +1623,18 @@ int shortestSubarray(std::vector<int>& A, int K) {
   deque<int> D;
   int ret = INT_MAX;
   for (int i = 0; i< len; i++ ){
-    if (i>0) A[i]+=A[i-1];
-    if (A[i] >=K ) ret = min(ret, i+1);
-    while (D.size() && A[i] - A[D.front()] >= K) {
-      ret = min(ret, i-D.front());
-      D.pop_front();
-    }
-    /* all previous A[node] on D is in increasing older. */
-    /* check skyline problem and see if same idea applies*/
-    while (D.size() && A[i] < A[D.back()]){
-       D.pop_back();
-    }
-    D.push_back(i);
+  if (i>0) A[i]+=A[i-1];
+  if (A[i] >=K ) ret = min(ret, i+1);
+  while (D.size() && A[i] - A[D.front()] >= K) {
+    ret = min(ret, i-D.front());
+    D.pop_front();
+  }
+  /* all previous A[node] on D is in increasing older. */
+  /* check skyline problem and see if same idea applies*/
+  while (D.size() && A[i] < A[D.back()]){
+     D.pop_back();
+  }
+  D.push_back(i);
   }  
   return ret == INT_MAX ? -1:ret;
 
@@ -1660,20 +1660,20 @@ int shortestSubarray(std::vector<int>& A, int K) {
 ```cpp
 /* iteration */
 vector<int> inorderTraversal(TreeNode* root) {
-      vector<int> ret;
-      stack<TreeNode*> S;
-      while (S.size() || root){
-        if (root){
-          S.push(root);
-          root = root->left;
-        }else{
-          auto top = S.top();
-          ret.push_back(top->val);
-          S.pop();
-          root = top->right;
-        }
-      }
-      return ret;
+    vector<int> ret;
+    stack<TreeNode*> S;
+    while (S.size() || root){
+    if (root){
+      S.push(root);
+      root = root->left;
+    }else{
+      auto top = S.top();
+      ret.push_back(top->val);
+      S.pop();
+      root = top->right;
+    }
+    }
+    return ret;
 }
 
 // to do: Morris traversal method
@@ -1697,31 +1697,31 @@ postorder = [9,15,7,20,3]
 
 Return the following binary tree:
 
-    3
+  3
    / \
   9  20
-    /  \
+  /  \
    15   7
 */
 
-    unordered_map<int,int> M;
-    TreeNode* helper(vector<int>& inorder, vector<int>& postorder, int& idx, int left, int right) {
-      if (left > right) return NULL;
-      TreeNode* root = new TreeNode(postorder[idx]);
-      auto left_idx = M[postorder[idx]]-1;
-      auto right_idx = M[postorder[idx]]+1;
-      idx--;
-      root->right = helper(inorder, postorder, idx, right_idx, right);
-      root->left = helper(inorder, postorder, idx, left, left_idx);
-      return root;
-    }
+  unordered_map<int,int> M;
+  TreeNode* helper(vector<int>& inorder, vector<int>& postorder, int& idx, int left, int right) {
+    if (left > right) return NULL;
+    TreeNode* root = new TreeNode(postorder[idx]);
+    auto left_idx = M[postorder[idx]]-1;
+    auto right_idx = M[postorder[idx]]+1;
+    idx--;
+    root->right = helper(inorder, postorder, idx, right_idx, right);
+    root->left = helper(inorder, postorder, idx, left, left_idx);
+    return root;
+  }
   
-    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-      int len = inorder.size(), idx = 0;
-      for (auto& i: inorder) M[i]=idx++;
-      idx = len-1;
-      return helper(inorder, postorder, idx, 0, len-1);
-    }
+  TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+    int len = inorder.size(), idx = 0;
+    for (auto& i: inorder) M[i]=idx++;
+    idx = len-1;
+    return helper(inorder, postorder, idx, 0, len-1);
+  }
 ```
 ### 105. Construct Binary Tree from Inorder and preorder Traversal (same idea)
 
@@ -1730,36 +1730,36 @@ Return the following binary tree:
 
 ```cpp
    TreeNode* helper(TreeNode* root, TreeNode* large, TreeNode* p){
-       if (root == p){
-         if (root->right){
-           auto tmp = root->right;
-           while (tmp && tmp->left){
-             tmp = tmp->left;
-           }
-           return tmp;
-         }else if (large) { 
-            return large; 
-         }else{
-           return nullptr;
-         }
-       }else if (root->val > p->val){
-         if (root->left){
-           return helper(root->left, root, p);
-         }else{
-           return nullptr;
-         }
-       }else{
-         if (root->right){
-           return helper(root->right, large, p);
-          }else{
-           return nullptr;
-         }
-       }    
-    }
+     if (root == p){
+     if (root->right){
+       auto tmp = root->right;
+       while (tmp && tmp->left){
+       tmp = tmp->left;
+       }
+       return tmp;
+     }else if (large) { 
+      return large; 
+     }else{
+       return nullptr;
+     }
+     }else if (root->val > p->val){
+     if (root->left){
+       return helper(root->left, root, p);
+     }else{
+       return nullptr;
+     }
+     }else{
+     if (root->right){
+       return helper(root->right, large, p);
+      }else{
+       return nullptr;
+     }
+     }  
+  }
   
-    TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
-      return helper(root, nullptr, p);
-    }
+  TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
+    return helper(root, nullptr, p);
+  }
 ```
 
 
