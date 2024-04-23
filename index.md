@@ -5,6 +5,15 @@ vim block  insert   (exc twice)
 3 insert context
 4. exc TIWCE 
 
+save,append and copy linee in vim(with buffer a) 
+1. "a3+y    --> yank 3 lines in a
+2. "A8+y    --> append(A) 5 lines into a
+3. "ap      --> paste above 11 lines 
+
+save, copy, (not append) lines to clipbord
+clipboard register for linux is "*" for window is "+"
+1. copy: hightlight and   "*y"              (linux),  "+y"   (window)
+2  paste                  mouse-middle-click(linux),  ctrl-v (window) 
 
 rcording macro:   q  qq  @
 1. q + register(a-z)
