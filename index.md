@@ -11,13 +11,13 @@ vim block  insert   (exc twice)
 4. exc TIWCE 
 
 save,append and copy linee in vim(with buffer a) 
-1. \"a3+y  --> yank 3 lines in a
-2. \"A8+y  --> append(A) 5 lines into a
-3. \"ap    --> paste above 11 lines 
+1. "a3+y  --> yank 3 lines in a
+2. "A8+y  --> append(A) 5 lines into a
+3. "ap    --> paste above 11 lines 
 
 save, copy, (not append) lines to clipbord
-clipboard register for linux is "\*" for window is "+"
-1. copy: hightlight and   \"\*y"        (linux),  \"\+y\"   (window)
+clipboard register for linux is "*" for window is "+"
+1. copy: hightlight and   "\*y"        (linux),  "+y\"   (window)
 2  paste          mouse-middle-click(linux),  ctrl\-v (window) 
 
 rcording macro:   q  qq  @
@@ -26,7 +26,9 @@ rcording macro:   q  qq  @
 3. qq to save
 use macro
  @ register(a-z)
+ ```
 
+```cpp
 Change: cw/ciw   cf/ct  cnf/cnt  ci + '({""  r/#r/R/s/#s/a/A o/O x/dd 
 yanking: y w|iw|$|^|%{([ paste: P|p
 move:  H/M/L/ZZ w/e/b 
